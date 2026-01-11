@@ -1,0 +1,269 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  background: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background: #0060df;
+}
+
+.result {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.result h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.script-section {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.script-section h3 {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.script-section p {
+  white-space: pre-wrap;
+}
+
+.error {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  color: #c00;
+}
+
+.error h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.error ul {
+  margin-left: 1.5rem;
+}
+
+/* Chat UI */
+.topic-display {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #e8f4ff;
+  border-radius: 4px;
+}
+
+.chat-container {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.chat-message {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.chat-message.assistant {
+  background: #f0f0f0;
+  margin-right: 2rem;
+}
+
+.chat-message.user {
+  background: #e8f4ff;
+  margin-left: 2rem;
+}
+
+.message-role {
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.message-content {
+  white-space: pre-wrap;
+}
+
+.input-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-area input {
+  flex: 1;
+}
+
+.input-area button {
+  flex-shrink: 0;
+}
+
+.ready-area {
+  text-align: center;
+  padding: 1rem;
+}
+
+.ready-message {
+  margin-bottom: 1rem;
+  color: #0a0;
+  font-weight: 500;
+}
+
+.ready-area button {
+  margin: 0 0.5rem;
+}
+
+button.secondary {
+  background: #666;
+}
+
+button.secondary:hover:not(:disabled) {
+  background: #555;
+}
+
+.generating {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.result-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* YouTube URL Input */
+.url-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.url-input-group input {
+  flex: 1;
+}
+
+.analyze-btn {
+  flex-shrink: 0;
+  padding: 0.75rem 1rem;
+}
+
+.analysis-result {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.analysis-result.success {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+}
+
+.analysis-result.error {
+  background: #ffebee;
+  border: 1px solid #ffcdd2;
+}
+
+.video-title {
+  margin-bottom: 0.5rem;
+}
+
+.channel-name {
+  display: block;
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.analysis-details {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.analysis-item {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.analysis-item .label {
+  font-weight: 500;
+  color: #666;
+}
+
+.error-text {
+  color: #c00;
+  margin: 0;
+}
