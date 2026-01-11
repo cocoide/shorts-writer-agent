@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { validateYouTubeUrl, extractVideoId } from '@/lib/youtube/youtube-analyzer'
 import type { VideoAnalysis } from '@/lib/types/youtube'
+import { extractJson } from '@/lib/utils/json-parser'
 
 /**
  * YouTube動画解析APIエンドポイント
@@ -114,7 +115,9 @@ async function analyzeWithLLM(
 
     if (!textContent) return null
 
-    const parsed = JSON.parse(textContent.text)
+    // LLMがコードブロックで囲んで返す場合に対応
+    const jsonString = extractJson(textContent.text)
+    const parsed = JSON.parse(jsonString)
     return {
       hookStyle: parsed.hookStyle || '不明',
       tone: parsed.tone || '不明',
