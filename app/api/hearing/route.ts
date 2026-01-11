@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import type { HearingMessage } from '@/lib/types/hearing'
+import { extractJson } from '@/lib/utils/json-parser'
 
 /**
  * ヒアリングAPIエンドポイント
@@ -89,7 +90,9 @@ async function generateHearingResponse(
   }
 
   try {
-    const parsed = JSON.parse(textContent.text)
+    // LLMがコードブロックで囲んで返す場合に対応
+    const jsonString = extractJson(textContent.text)
+    const parsed = JSON.parse(jsonString)
     return {
       type: parsed.type === 'complete' ? 'complete' : 'question',
       content: parsed.content || textContent.text,

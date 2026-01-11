@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import type { LLMClient, LLMResponse } from '@/lib/types/llm'
 import type { Script } from '@/lib/types/script'
+import { extractJson } from '@/lib/utils/json-parser'
 
 /**
  * Anthropic Claude APIを使用するLLMクライアント
@@ -62,7 +63,7 @@ export class AnthropicLLM implements LLMClient {
     }
 
     const rawOutput = textContent.text
-    const jsonString = this.extractJson(rawOutput)
+    const jsonString = extractJson(rawOutput)
 
     try {
       const parsed = JSON.parse(jsonString)
@@ -94,26 +95,6 @@ export class AnthropicLLM implements LLMClient {
         rawOutput,
       }
     }
-  }
-
-  /**
-   * レスポンスからJSON文字列を抽出する
-   * ```json ... ``` で囲まれている場合は中身を抽出
-   */
-  private extractJson(text: string): string {
-    // ```json ... ``` または ``` ... ``` で囲まれている場合
-    const codeBlockMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/)
-    if (codeBlockMatch) {
-      return codeBlockMatch[1].trim()
-    }
-
-    // { で始まり } で終わる部分を抽出
-    const jsonMatch = text.match(/\{[\s\S]*\}/)
-    if (jsonMatch) {
-      return jsonMatch[0]
-    }
-
-    return text.trim()
   }
 
   /**
