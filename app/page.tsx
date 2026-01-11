@@ -10,6 +10,7 @@ type GenerationResponse = {
   script?: Script
   errors?: ValidationError[]
   llmError?: string
+  needsMoreInfo?: boolean
 }
 
 type HearingResponse = {
@@ -372,8 +373,14 @@ export default function Home() {
           )}
 
           {!result.success && (
-            <div className="error">
-              <h2>エラー</h2>
+            <div className={`error ${result.needsMoreInfo ? 'needs-more-info' : ''}`}>
+              <h2>{result.needsMoreInfo ? '追加情報が必要です' : 'エラー'}</h2>
+              {result.needsMoreInfo && (
+                <p className="info-message">
+                  台本を生成するための情報が不足しています。
+                  ヒアリングに戻って、もう少し詳しく教えてください。
+                </p>
+              )}
               {result.llmError && <p>{result.llmError}</p>}
               {result.errors && result.errors.length > 0 && (
                 <ul>
@@ -388,15 +395,28 @@ export default function Home() {
           )}
 
           <div className="result-actions">
-            <button onClick={generateScript} disabled={isLoading}>
-              再生成
-            </button>
-            <button onClick={backToHearing} className="secondary" disabled={isLoading}>
-              ヒアリングに戻る
-            </button>
-            <button onClick={reset} className="secondary" disabled={isLoading}>
-              最初からやり直す
-            </button>
+            {result.needsMoreInfo ? (
+              <>
+                <button onClick={backToHearing} disabled={isLoading}>
+                  ヒアリングに戻る
+                </button>
+                <button onClick={reset} className="secondary" disabled={isLoading}>
+                  最初からやり直す
+                </button>
+              </>
+            ) : (
+              <>
+                <button onClick={generateScript} disabled={isLoading}>
+                  再生成
+                </button>
+                <button onClick={backToHearing} className="secondary" disabled={isLoading}>
+                  ヒアリングに戻る
+                </button>
+                <button onClick={reset} className="secondary" disabled={isLoading}>
+                  最初からやり直す
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}

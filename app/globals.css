@@ -267,3 +267,19 @@ button.secondary:hover:not(:disabled) {
   color: #c00;
   margin: 0;
 }
+
+/* Needs More Info */
+.error.needs-more-info {
+  background: #fff8e1;
+  border-color: #ffe082;
+  color: #5d4037;
+}
+
+.error.needs-more-info h2 {
+  color: #f57c00;
+}
+
+.info-message {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}

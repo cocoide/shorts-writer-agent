@@ -12,4 +12,6 @@ export interface GenerationResult {
   errors?: ValidationError[]
   /** LLMエラー（LLM呼び出し失敗時のみ） */
   llmError?: string
+  /** 追加情報が必要（再ヒアリングを促す） */
+  needsMoreInfo?: boolean
 }
